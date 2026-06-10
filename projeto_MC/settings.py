@@ -123,8 +123,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Habilita a compressão do WhiteNoise (deixa seu PWA mais rápido)
 STORAGES = {
+    # Mantém o WhiteNoise cuidando dos arquivos CSS/JS do seu PWA
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    # ADICIONE ESSE BLOCO ABAIXO: Devolve ao Django o controle dos uploads padrão
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
 }
 
