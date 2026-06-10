@@ -436,6 +436,8 @@ textarea.input-estilizado {
     border-radius: 15px;
     width: 90%;
     max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     animation: slideDown 0.3s ease;
 }
@@ -556,22 +558,94 @@ textarea.input-estilizado {
 }
 
 /* --- RESPONSIVIDADE MODAL --- */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .modal-conteudo {
-        margin: 20% auto;
-        padding: 25px;
+        margin: 10% auto;
+        padding: 20px;
     }
 
     .modal-conteudo h2 {
         font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .form-cadastro {
+        gap: 12px;
+    }
+
+    .form-grupo {
+        gap: 4px;
+    }
+
+    .form-grupo label {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    .form-grupo small {
+        font-size: 0.75rem;
+    }
+
+    .form-botoes {
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-cancelar, .btn-enviar {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-conteudo {
+        margin: 5% auto;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .modal-conteudo h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .modal-fechar {
+        font-size: 24px;
+    }
+
+    .form-cadastro {
+        gap: 10px;
+    }
+
+    .form-grupo {
+        gap: 3px;
+    }
+
+    .form-grupo label {
+        font-size: 0.85rem;
+    }
+
+    .input-estilizado,
+    .input-arquivo {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    textarea.input-estilizado {
+        height: 80px;
     }
 
     .form-botoes {
         flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
     }
 
-    .btn-cancelar, .btn-enviar {
+    .btn-cancelar, 
+    .btn-enviar {
         width: 100%;
+        padding: 12px 15px;
+        font-size: 0.9rem;
     }
 }
 
