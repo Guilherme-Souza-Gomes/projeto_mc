@@ -1,0 +1,113 @@
+{% load static %}
+{% load pwa %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa história</title>
+
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+{% progressive_web_app_meta %}
+</head>
+<body>
+
+    <div id="conteudoHome" class="container{% if show_slides %} home-oculta{% endif %}">
+
+        <!--<header>
+            <h1>Nossa história</h1>
+            <p>Um pedacinho da nossa história guardado na gaveta mais bonita da internet.</p>
+        </header>-->
+
+        {% if show_slides %}
+        <div id="wrapperSlides" class="tela-cheia-slides">
+            <div class="slide-conteudo">
+                <p id="textoSlide" class="slide-texto"></p>
+                <button id="btnProximoSlide" class="botao-snoopy">Começar</button>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="tabs">
+            <button type="button" class="tab-btn active" data-tab="timeline">Linha do Tempo</button>
+            <button type="button" class="tab-btn" data-tab="mural">Mural Secreto</button>
+        </div>
+
+        <section id="tab-timeline" class="tab-pane active">
+            <h2 class="secao-titulo">📸 Nossa Linha do Tempo</h2>
+            <span class="secao-subtitulo">Cada capítulo importante da nossa jornada...</span>
+            
+            <button id="btnAdicionarMomento" class="btn-adicionar-momento">Adicionar Momento</button>
+
+            <main id="timeline" class="timeline">
+                <!-- Itens de timeline serão carregados aqui dinamicamente -->
+            </main>
+        </section>
+
+        <section id="tab-mural" class="tab-pane">
+            <h2 class="secao-titulo">✍️ Nosso Mural Secreto</h2>
+            <span class="secao-subtitulo">Deixe um recadinho carinhoso para ler depois</span>
+
+            <section class="quadro-mensagens">
+            <form id="formMensagem" class="formulario-mensagem" method="post">
+                {% csrf_token %}
+                <div class="inputs-linha">
+                    <input type="text" id="inputNome" name="nome" class="input-estilizado" placeholder="Seu nome" required>
+                </div>
+                <textarea id="inputTexto" name="texto" class="input-estilizado" placeholder="Escreva algo lindo aqui..." required></textarea>
+                <button type="submit" class="botao-snoopy">Colar no Quadro</button>
+            </form>
+
+            <div id="listaMensagens" class="mensagens-lista">
+                </div>
+        </section>
+        </section>
+
+    </div>
+
+    <!-- Modal de Cadastro de Momento -->
+    <div id="modalCadastro" class="modal">
+        <div class="modal-conteudo">
+            <span class="modal-fechar">&times;</span>
+            <h2>✨ Adicionar um Novo Momento</h2>
+            <form id="formCadastroMomento" class="form-cadastro" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-grupo">
+                    <label for="titulo">Título do Momento</label>
+                    <input type="text" id="titulo" name="titulo" class="input-estilizado" placeholder="Ex: Nosso primeiro encontro" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="descricao">Descrição/Legenda</label>
+                    <textarea id="descricao" name="descricao" class="input-estilizado" placeholder="Descreva este momento especial..." rows="4"></textarea>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="imagem">Imagem</label>
+                    <input type="file" id="imagem" name="imagem" class="input-arquivo" accept="image/*" required>
+                    <small>Tamanho máximo: 5MB. Formatos: JPG, PNG, GIF</small>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="data">Data do Evento</label>
+                    <input type="date" id="data" name="data" class="input-estilizado" required>
+                </div>
+
+                <div class="form-botoes">
+                    <button type="button" id="btnFecharModal" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-snoopy">Salvar Momento</button>
+                </div>
+
+                <div id="mensagemErro" class="mensagem-erro" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="{% static 'home/js/script.js' %}"></script>
+</body>
+</html>
