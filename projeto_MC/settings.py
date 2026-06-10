@@ -154,3 +154,5 @@ PWA_APP_ICONS = [
         'sizes': '512x512'
     }
 ]
+
+ALLOWED_HOSTS = ['.render.com', 'projeto-mc.onrender.com', 'localhost', '127.0.0.1']
